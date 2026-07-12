@@ -1,20 +1,19 @@
-const moveButton = document.getElementById("move-random");
+const noBtn = document.getElementById("move-random");
 
-function moveRandomEl() {
-    const maxX = window.innerWidth - moveButton.offsetWidth - 20;
-    const maxY = window.innerHeight - moveButton.offsetHeight - 20;
+function moveButton() {
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
 
-    moveButton.style.position = "fixed";
-    moveButton.style.left = Math.random() * maxX + "px";
-    moveButton.style.top = Math.random() * maxY + "px";
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
 }
 
-moveButton.addEventListener("mouseenter", function (e) {
+noBtn.addEventListener("mouseenter", moveButton);
+noBtn.addEventListener("touchstart", function(e){
     e.preventDefault();
-    moveRandomEl();
-});
-
-moveButton.addEventListener("click", function (e) {
-    e.preventDefault();
-    moveRandomEl();
+    moveButton();
 });
