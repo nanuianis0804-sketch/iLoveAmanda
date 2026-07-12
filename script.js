@@ -1,13 +1,26 @@
+const moveButton = document.getElementById("move-random");
+
 function moveRandomEl(elm) {
-  elm.style.position = "absolute";
-  elm.style.top = Math.floor(Math.random() * 90 + 5) + "%";
-  elm.style.left = Math.floor(Math.random() * 90 + 5) + "%";
+    const maxX = window.innerWidth - elm.offsetWidth;
+    const maxY = window.innerHeight - elm.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    elm.style.position = "fixed";
+    elm.style.left = `${x}px`;
+    elm.style.top = `${y}px`;
 }
 
+// Move every time the cursor gets on it
+moveButton.addEventListener("mouseenter", (e) => {
+    e.preventDefault();
+    moveRandomEl(moveButton);
+});
 
-
-const moveRandom = document.querySelector("#move-random");
-
-moveRandom.addEventListener("mouseenter", function (e) {
-  moveRandomEl(e.target);
+// Also move on touch devices
+moveButton.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    moveRandomEl(moveButton);
+});
 });
