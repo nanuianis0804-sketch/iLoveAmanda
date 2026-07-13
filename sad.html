@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Until We Meet Sweetie</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .last-page {
+            background-color: #d8b4f8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+
+        .last-page h2 {
+            color: #4b0082;
+            font-size: 35px;
+            line-height: 1.4;
+            margin-bottom: 30px;
+            max-width: 700px;
+            text-shadow: 2px 2px 8px rgba(255,255,255,0.8);
+            animation: fadeIn 1.5s ease;
+        }
+
+
+        .last-page h1 {
+            color: #4b0082;
+            font-size: 45px;
+            line-height: 1.4;
+            margin-top: 30px;
+            font-style: italic;
+            letter-spacing: 2px;
+            max-width: 700px;
+            text-shadow: 2px 2px 8px rgba(255,255,255,0.8);
+            animation: fadeIn 2s ease;
+        }
+
+
+        #timer {
+            font-size: 45px;
+            font-weight: bold;
+            color: #ff4f9a;
+            background: white;
+            padding: 20px 40px;
+            border-radius: 25px;
+            letter-spacing: 2px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+
+        /* Flying hearts */
+        .heart {
+            position: fixed;
+            bottom: -50px;
+            font-size: 30px;
+            animation: fly 6s linear infinite;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+
+        @keyframes fly {
+
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+
+        }
+
+
+        /* Fade animation */
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* Timer heartbeat */
+        @keyframes pulse {
+
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+
+        }
+
+
+        /* Phone version */
+        @media (max-width: 600px) {
+
+            .last-page {
+                padding: 20px;
+            }
+
+
+            .last-page h2 {
+                font-size: 22px;
+                line-height: 1.5;
+                margin-bottom: 25px;
+                max-width: 350px;
+            }
+
+
+            #timer {
+                font-size: 22px;
+                padding: 15px 10px;
+                width: 100%;
+                max-width: 340px;
+                line-height: 1.5;
+            }
+
+
+            .last-page h1 {
+                font-size: 28px;
+                line-height: 1.5;
+                margin-top: 25px;
+                max-width: 350px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="last-page">
+
+
+    <h2>
+        Hey my baby🥺💕<br>
+        Still feeling sad...?
+        <br><br>
+        I made this little countdown<br>
+        just to remind you...
+    </h2>
+
+
+    <div id="timer">
+        Loading...
+    </div>
+
+
+    <h1>
+        Every second brings us closer ❤️<br>
+        until we finally meet heheheh
+    </h1>
+
+
+
+    <script>
+
+        let meetDate = new Date("July 10, 2027 00:00:00").getTime();
+
+
+        let timer = setInterval(function () {
+
+            let now = new Date().getTime();
+
+            let distance = meetDate - now;
+
+
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+            document.getElementById("timer").innerHTML =
+                days + " days ❤️ " +
+                hours + " hours ❤️ " +
+                minutes + " minutes ❤️ " +
+                seconds + " seconds";
+
+
+            if (distance < 0) {
+
+                clearInterval(timer);
+
+                document.getElementById("timer").innerHTML =
+                    "WE FINALLY MET HEHEHEHEHE❤️";
+
+            }
+
+
+        }, 1000);
+
+
+
+        // Create flying hearts
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.className = "heart";
+            heart.innerHTML = "❤️";
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+
+            document.body.appendChild(heart);
+
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+
+        }
+
+
+        setInterval(createHeart, 500);
+
+
+    </script>
+
+
+</body>
+</html>
