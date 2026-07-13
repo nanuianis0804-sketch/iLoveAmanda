@@ -1,12 +1,21 @@
 function moveRandomEl(elm) {
-  elm.style.position = "absolute";
-  elm.style.top = Math.floor(Math.random() * 90 + 5) + "%";
-  elm.style.left = Math.floor(Math.random() * 90 + 5) + "%";
+  elm.style.position = "fixed";
+
+  const maxX = window.innerWidth - elm.offsetWidth;
+  const maxY = window.innerHeight - elm.offsetHeight;
+
+  elm.style.left = Math.floor(Math.random() * maxX) + "px";
+  elm.style.top = Math.floor(Math.random() * maxY) + "px";
 }
 
 const moveRandom = document.querySelector("#move-random");
 
-moveRandom.addEventListener("pointerdown", function (e) {
-  e.preventDefault();
-  moveRandomEl(e.target);
-});
+if (moveRandom) {
+  function move(e) {
+    e.preventDefault();
+    moveRandomEl(moveRandom);
+  }
+
+  moveRandom.addEventListener("pointerenter", move);
+  moveRandom.addEventListener("pointerdown", move);
+}
