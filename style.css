@@ -87,3 +87,89 @@ h3 {
         font-size: 16px;
     }
 }
+
+
+body {
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.images img {
+    width: 200px;
+}
+
+button {
+    padding: 20px 50px;
+    font-size: 28px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+/* Soft glow around the whole page */
+.last-page {
+    background: linear-gradient(135deg, #d8b4f8, #f8d7ff);
+}
+
+/* Make text feel more magical */
+.last-page h2,
+.last-page h1 {
+    animation: fadeIn 2s ease-in-out;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Timer pulse effect */
+#timer {
+    animation: pulse 2s infinite;
+}
+
+/* Smooth appearance */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Heart-like glowing timer */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 79, 154, 0.4);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 35px rgba(255, 79, 154, 0.7);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 79, 154, 0.4);
+    }
+}
+
+/* Add cute spacing between letters */
+.last-page h1 {
+    letter-spacing: 2px;
+}
+
+/* Make timer numbers look special */
+#timer {
+    letter-spacing: 3px;
+}
